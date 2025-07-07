@@ -789,8 +789,8 @@ class GPUModelRunnerPatch(ArcticPatch[GPUModelRunner]):
                     for _ in range(self.vllm_config.compilation_config.
                                    cudagraph_num_of_warmups):
                         self._dummy_run(num_tokens * sp_size,
-                                        capture_attn_cudagraph=skip_attn)
-                    self._dummy_run(num_tokens * sp_size, capture_attn_cudagraph=skip_attn)
+                                        capture_attn_cudagraph=capture_attn_cudagraph)
+                    self._dummy_run(num_tokens * sp_size, capture_attn_cudagraph=capture_attn_cudagraph)
 
             if self.shift_model is not None:
                 orig_model, self.model = self.model, self.shift_model
@@ -804,8 +804,8 @@ class GPUModelRunnerPatch(ArcticPatch[GPUModelRunner]):
                         with set_shift_parallel_mode(True):
                             for _ in range(self.vllm_config.compilation_config.
                                             cudagraph_num_of_warmups):
-                                self._dummy_run(num_tokens, capture_attn_cudagraph=skip_attn)
-                            self._dummy_run(num_tokens, capture_attn_cudagraph=skip_attn)
+                                self._dummy_run(num_tokens, capture_attn_cudagraph=capture_attn_cudagraph)
+                            self._dummy_run(num_tokens, capture_attn_cudagraph=capture_attn_cudagraph)
                 self.model = orig_model
 
         end_time = time.perf_counter()
