@@ -37,11 +37,6 @@ packages = [
 [tool.setuptools.package-data]
 "arctic_inference.embedding" = ["arctic_inference/embedding/proto/*.proto"]
 
-[project.optional-dependencies]
-vllm = [
-    'vllm==0.9.1',
-]
-
 docs = [
     "sphinx>=8.1.3",
     "sphinx-copybutton",
@@ -55,7 +50,6 @@ test = [
 ]
 
 embedding = [
-    "vllm==0.9.0.1",
     # uv pip install vllm==0.9.0 --dry-run 2>&1 | grep protobuf | sed 's/^ + //'
     "protobuf==5.29.5",
 ]
